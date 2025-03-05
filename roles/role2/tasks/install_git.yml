@@ -1,0 +1,42 @@
+---
+- name: Install Git
+  package:
+    name: git
+    state: present
+
+- name: Create /home/GIT directory
+  file:
+    path: /home/GIT
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create git group
+  group:
+    name: git
+    state: present
+
+- name: Add users to git group
+  user:
+    name: "{{ item }}"
+    groups: git
+    append: true
+  loop:
+    - jeromeseguin
+    - briancollins
+    - mohamedsallami
+    - geoffcamp
+    - mounireldhimni
+    - guillaumejuncker
+
+- name: Set group ownership of /home/GIT to git
+  file:
+    path: /home/GIT
+    group: git
+    recurse: no
+
+- name: Grant read-write-execute permissions to git group on /home/GIT
+  file:
+    path: /home/GIT
+    mode: '2775' 

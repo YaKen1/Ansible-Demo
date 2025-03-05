@@ -1,0 +1,13 @@
+- name: initial configuration on servers
+  hosts: servers:bastion
+  become: true
+  gather_facts: true
+  vars_files:
+    - envs/dev/group_vars/db_vars.yml
+  roles:
+    - role2
+
+  roles:
+  - { role: role1, tags: role1 }
+  - { role: role2, tags: role2 }
+  - { role: role3, tags: role3 }

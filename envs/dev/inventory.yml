@@ -1,0 +1,9 @@
+all:
+  children:
+    servers:
+      hosts:
+        kali:
+          ansible_host: 192.168.1.9
+          ansible_user: ansible
+          ansible_port: 22 
+          ansible_python_interpreter : /usr/bin/python3.9

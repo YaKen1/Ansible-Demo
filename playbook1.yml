@@ -1,0 +1,6 @@
+- name: Configure Cronicle Server
+  hosts: servers
+  become: no
+  gather_facts: no
+  roles:
+    - role1

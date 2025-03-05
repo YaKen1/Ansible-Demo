@@ -1,0 +1,29 @@
+---
+- name: Ensure EPEL repository is enabled
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install common packages
+  package:
+    name:
+      - tar
+      - zip
+      - unzip
+      - bash-completion
+      - htop
+      - tree
+      - ncdu
+      - iotop
+      - iftop
+      - lsof
+      - sysstat
+    state: present
+
+- name: Update all system packages to the latest version
+  yum:
+    name: "*"
+    state: latest
+
+- name: Set the timezone to Europe/London
+  command: timedatectl set-timezone Europe/London
