@@ -1,0 +1,25 @@
+---
+- name: Create plugins directory
+  ansible.builtin.file:
+    path: /home/yassine/plugins
+    state: directory
+    owner: yassine
+    group: yassine
+    mode: '0755'
+  become: true  # Execute with sudo
+  tags: 
+    - file_creation # Tag for the creation_files role (All Tasks)
+    - plugins       # Tag for one role task
+    - plugins_dir   # Tag for sub-task
+
+- name: Deploy plugins package
+  ansible.builtin.unarchive:
+    src: roles/role1/files/plugins.zip
+    dest: /home/cronicle/plugins/
+    owner: yassine 
+    group: yassine
+    mode: '0755'
+  tags: 
+    - file_creation   # Tag for the creation_files role (All Tasks)
+    - plugins         # Tag for one role task
+    - plugins_copy    # Tag for sub-task

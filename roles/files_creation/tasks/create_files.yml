@@ -1,0 +1,10 @@
+---
+- name: Create test files on Linux server
+  file:
+    path: "{{ item.path }}"
+    state: touch
+  loop: "{{ files }}"
+  tags: 
+    - file_creation # Tag for the creation_files role (All Tasks)
+    - files         # Tag for one role task
+    #- 3rd_tag      # No need for this tag since there is only 1 task

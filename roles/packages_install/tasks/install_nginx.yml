@@ -1,0 +1,41 @@
+---
+- name: Ensure EPEL repository is enabled (required for nginx)
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - nginx_install_config  # Tag for one role task
+    - epel_repo       # Tag for sub-task
+
+- name: Install NGINX
+  ansible.builtin.yum:
+    name: nginx
+    state: present
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - nginx_install_config  # Tag for one role task
+    - nginx_install         # Tag for sub-task
+
+- name: Start and enable NGINX
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - nginx_install_config  # Tag for one role task
+    - nginx_start_enable    # Tag for sub-task
+
+- name: Deploy NGINX proxy configuration
+  ansible.builtin.template:
+    src: nginx-proxy.conf.j2
+    dest: /etc/nginx/conf.d/proxy.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart NGINX
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - nginx_install_config  # Tag for one role task
+    - nginx_restart         # Tag for sub-task

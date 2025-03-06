@@ -1,0 +1,75 @@
+---
+- name: Install Git
+  package:
+    name: git
+    state: present
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_install           # Tag for sub-task
+
+- name: Create /home/GIT directory
+  file:
+    path: /home/GIT
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_dir               # Tag for sub-task
+
+- name: Create git group
+  group:
+    name: git
+    state: present
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_group             # Tag for sub-task
+
+
+# Why we used loop here is because it's necessary, 
+# since user module expects a single user at a time
+# not like package module
+
+- name: Ensure users exist
+  user:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ users }}"
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_create_users      # Tag for sub-task
+
+- name: Add users to git group
+  user:
+    name: "{{ item }}"
+    groups: git
+    append: true
+  loop: "{{ users }}"
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_add_users         # Tag for sub-task
+
+- name: Set group ownership of /home/GIT to git
+  file:
+    path: /home/GIT
+    group: git
+    recurse: no
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_group_chown       # Tag for sub-task
+
+- name: Grant read-write-execute permissions to git group on /home/GIT
+  file:
+    path: /home/GIT
+    mode: '2775' 
+  tags: 
+    - packages_install      # Tag for the creation_files role (All Tasks)
+    - git_install_config    # Tag for one role task
+    - git_group_chmod       # Tag for sub-task

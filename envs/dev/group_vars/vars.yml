@@ -18,9 +18,9 @@ packages:
   - sysstat
 
 users:
-  - jeromeseguin
-  - briancollins
-  - mohamedsallami
-  - geoffcamp
-  - mounireldhimni
-  - guillaumejuncker
+  - user1
+  - user2
+  - user3
+  - user4
+  - user5
+  - user6

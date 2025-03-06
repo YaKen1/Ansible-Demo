@@ -1,0 +1,17 @@
+---
+- name: Configure Linux Server
+  hosts: servers
+  become: true
+  gather_facts: no
+  vars_files:
+    - envs/dev/group_vars/vars.yml
+  roles:
+    - files_creation
+    - packages_install
+
+
+# A whole role can't be tagged, but if we want a whole 
+# role to be executed how to achieve that using tags?
+#######################################################
+# The solution is that we specify a tag for the 
+# role and repeat it in all tasks in the role.

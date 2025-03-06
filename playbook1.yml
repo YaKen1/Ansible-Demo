@@ -1,8 +1,0 @@
-- name: Configure Cronicle Server
-  hosts: servers
-  become: no
-  gather_facts: no
-  vars_files:
-    - envs/dev/group_vars/vars.yml
-  roles:
-    - role1
