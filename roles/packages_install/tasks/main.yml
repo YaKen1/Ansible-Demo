@@ -1,0 +1,8 @@
+---
+- name: Include packages_install role tasks
+  include_tasks:
+  - install_git.yml
+  - install_nginx.yml
+  - install_packages.yml
+
+# It's necessary to have this file in order for roles to be included in main.yml
