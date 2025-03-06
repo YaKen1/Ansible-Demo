@@ -9,11 +9,11 @@
   # tags: "{{ selected_tags }}" 
   # This for example, only applies for the selected tags in the main.yml of the role
   roles:
-    - files_creation
-    tags:
-        - "{{ selected_tags }}" # You need to specify for each role the tags (tasks)
-    - packages_install
-    tags:
+    - role: files_creation
+      tags:
+        - "{{ selected_tags }}" 
+    - role: packages_install
+      tags:
         - "{{ selected_tags }}"
 
 
