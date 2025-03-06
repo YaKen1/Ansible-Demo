@@ -1,7 +1,8 @@
 ---
-- name: Include file_creation role tasks
-  include_tasks:
-  - copy_plugins.yml
-  - create_files.yml
+- name: Include copy_plugins.yml tasks
+  include_tasks: copy_plugins.yml
+
+- name: Include create_files.yml tasks
+  include_tasks: create_files.yml
 
 # It's necessary to have this file in order for roles to be included in main.yml
