@@ -4,8 +4,8 @@
     repo: 'deb http://nginx.org/packages/debian/ stable nginx'
     state: present
   tags:
-    - packages_install
-    - nginx_install_config
+    - packages
+    - nginx
     - nginx_repo
 
 - name: Install NGINX
@@ -13,8 +13,8 @@
     name: nginx
     state: present
   tags:
-    - packages_install
-    - nginx_install_config
+    - packages
+    - nginx
     - nginx_install
 
 - name: Start and enable NGINX
@@ -23,8 +23,8 @@
     state: started
     enabled: true
   tags:
-    - packages_install
-    - nginx_install_config
+    - packages
+    - nginx
     - nginx_start_enable
 
 - name: Deploy NGINX proxy configuration
@@ -36,6 +36,6 @@
     mode: 0644
   notify: Restart NGINX
   tags:
-    - packages_install
-    - nginx_install_config
+    - packages
+    - nginx
     - nginx_restart

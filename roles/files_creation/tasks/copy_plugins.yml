@@ -10,7 +10,7 @@
   tags: 
     - file_creation # Tag for the creation_files role (All Tasks)
     - plugins       # Tag for one role task
-    - plugins_dir   # Tag for sub-task
+    - dir           # Tag for sub-task
 
 - name: Deploy plugins package
   ansible.builtin.unarchive:
@@ -22,4 +22,4 @@
   tags: 
     - file_creation   # Tag for the creation_files role (All Tasks)
     - plugins         # Tag for one role task
-    - plugins_copy    # Tag for sub-task
+    - copy    # Tag for sub-task

@@ -1,6 +1,7 @@
 ---
 - name: Configure Linux Server
-  hosts: servers
+  hosts: "{{ targeted_hosts | default('servers') }}"  
+  # This will use the value from the survey or 'all' if no value is provided.
   become: true
   gather_facts: no
   vars_files:
