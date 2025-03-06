@@ -19,16 +19,9 @@
 
 - name: Add users to git group
   user:
-    name: "{{ item }}"
+    name: "{{ users }}"
     groups: git
     append: true
-  loop:
-    - jeromeseguin
-    - briancollins
-    - mohamedsallami
-    - geoffcamp
-    - mounireldhimni
-    - guillaumejuncker
 
 - name: Set group ownership of /home/GIT to git
   file:

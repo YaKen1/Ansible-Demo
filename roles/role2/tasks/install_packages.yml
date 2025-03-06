@@ -6,18 +6,7 @@
 
 - name: Install common packages
   package:
-    name:
-      - tar
-      - zip
-      - unzip
-      - bash-completion
-      - htop
-      - tree
-      - ncdu
-      - iotop
-      - iftop
-      - lsof
-      - sysstat
+    name: "{{ packages }}"
     state: present
 
 - name: Update all system packages to the latest version
