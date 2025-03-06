@@ -1,44 +1,35 @@
 ---
-- name: Ensure EPEL repository is enabled
-  yum:
-    name: epel-release
+- name: Ensure repository is enabled (equivalent to EPEL on Debian-based systems)
+  apt_repository:
+    repo: 'deb http://archive.ubuntu.com/ubuntu/ focal main universe'
     state: present
-  tags: 
-    - packages_install      # Tag for the creation_files role (All Tasks)
-    - packages_vars         # Tag for one role task
-    - epel_repo             # Tag for sub-task
+  tags:
+    - packages_install
+    - packages_vars
+    - apt_repo
 
 - name: Install common packages
   package:
     name: "{{ packages }}"
     state: present
-  tags: 
-    - packages_install      # Tag for the creation_files role (All Tasks)
-    - packages_vars         # Tag for one role task
-    - packages_vars_install # Tag for sub-task
-
-
-# We used the previous task using name: "{{ packages }}" 
-# because using loop is less effecient and not recommended
-
-# - name: Install common packages
-#   package:
-#     name: "{{ item }}"
-#     state: present
-#   loop: "{{ packages }}"
+  tags:
+    - packages_install
+    - packages_vars
+    - packages_vars_install
 
 - name: Update all system packages to the latest version
-  yum:
-    name: "*"
+  apt:
+    upgrade: dist
+    update_cache: yes
     state: latest
-  tags: 
-    - packages_install      # Tag for the creation_files role (All Tasks)
-    - packages_vars         # Tag for one role task
-    - packages_update       # Tag for sub-task
+  tags:
+    - packages_install
+    - packages_vars
+    - packages_update
 
 - name: Set the timezone to Europe/London
   command: timedatectl set-timezone Europe/London
-  tags: 
-    - packages_install      # Tag for the creation_files role (All Tasks)
-    - packages_install_vars # Tag for one role task
-    - timezone              # Tag for sub-task
+  tags:
+    - packages_install
+    - packages_install_vars
+    - timezone
