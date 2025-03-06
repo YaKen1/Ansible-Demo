@@ -6,7 +6,7 @@
   gather_facts: no
   vars_files:
     - envs/dev/group_vars/vars.yml
-  tags: "{{ selected_tags.split(',') }}"
+  tags: "{{ selected_tags }}"
   roles:
     - files_creation
     - packages_install
