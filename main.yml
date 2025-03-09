@@ -10,11 +10,7 @@
   # This for example, only applies for the selected tags in the main.yml of the role
   roles:
     - role: files_creation
-      tags:
-        - "{{ selected_tags }}" 
     - role: packages_install
-      tags:
-        - "{{ selected_tags }}"
 
 
 # A whole role can't be tagged, but if we want a whole 
