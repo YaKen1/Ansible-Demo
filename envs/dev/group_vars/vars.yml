@@ -18,7 +18,7 @@ packages:
   - sysstat
 
 users:
-  - user1
+  - yassine
   - user2
   - user3
   - user4
