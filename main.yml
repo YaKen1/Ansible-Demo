@@ -6,11 +6,12 @@
   gather_facts: no
   vars_files:
     - envs/dev/group_vars/vars.yml
-  # tags: "{{ selected_tags }}" 
-  # This for example, only applies for the selected tags in the main.yml of the role
+  # Dynamically apply tags from the survey
+  tags: "{{ selected_tags }}"
+
   roles:
-    - role: files_creation
-    - role: packages_install
+  - role: files_creation
+  - role: packages_install
 
 
 # A whole role can't be tagged, but if we want a whole 
