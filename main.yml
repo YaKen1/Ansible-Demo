@@ -7,7 +7,7 @@
   vars_files:
     - envs/dev/group_vars/vars.yml
   # Dynamically apply tags from the survey
-  tags: "{{ user_tags | flatten }}"
+  tags: "{{ selected_tags | flatten }}"
 
   roles:
   - role: files_creation
