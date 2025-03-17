@@ -1,7 +1,0 @@
-- name: Check Ansible Config
-  hosts: localhost
-  tasks:
-    - command: ansible-config dump | tee /tmp/ansible-config-output.txt
-      register: config_output
-    - debug:
-        var: config_output.stdout
