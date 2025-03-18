@@ -15,7 +15,7 @@
 - name: Deploy plugins package
   ansible.builtin.unarchive:
     src: roles/files_creation/files/plugins.zip
-    dest: /home/cronicle/plugins/
+    dest: /home/yassine/plugins/
     owner: yassine 
     group: yassine
     mode: '0755'
